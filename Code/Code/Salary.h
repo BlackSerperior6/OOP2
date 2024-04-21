@@ -7,42 +7,16 @@ class Salary
 {
 public:
 
-	Salary()
+	Salary() //Конструктор без параметров
 	{
-		cout << "Конструктор без параметров был вызван" << endl;
+		cout << "Конструктор без параметров был вызван" << endl << endl;
+
+		FullName = "Placeholder";
+		Amount = 1;
+		Bonus = 1;
 	}
 
-	string GetFullname()
-	{
-		return FullName;
-	}
-
-	double GetAmount()
-	{
-		return Amount;
-	}
-
-	int GetBonus()
-	{
-		return Bonus;
-	}
-
-	void SetFullName(string newFullName)
-	{
-		FullName = newFullName;
-	}
-
-	void SetAmount(double newAmount)
-	{
-		Amount = newAmount;
-	}
-
-	void SetBonus(int newBonus) 
-	{
-		Bonus = newBonus;
-	}
-
-	Salary(string fullName, double amount, int bonus)
+	Salary(string fullName, double amount, int bonus)//Конструктор с параметрами
 	{
 		cout << "Вызван конструктор с параметрами" << endl;
 		SetFullName(fullName);
@@ -50,27 +24,57 @@ public:
 		SetBonus(bonus);
 	}
 
-	Salary(Salary *differentSalary)
+	Salary(Salary &differentSalary) //Конструктор копирования
 	{
 		cout << "Вызван конструктор копирования" << endl;
-		SetFullName(differentSalary->GetFullname());
-		SetAmount(differentSalary->GetAmount());
-		SetBonus(differentSalary->GetBonus());
+		SetFullName(differentSalary.GetFullname());
+		SetAmount(differentSalary.GetAmount());
+		SetBonus(differentSalary.GetBonus());
 	}
 
-	~Salary() 
+	~Salary() //Деструктор
 	{
-		cout << "Был вызван дезруктор. Имя уничтоженного элемента - " << FullName << endl;
+		cout << "Был вызван деструктор. Имя уничтоженного элемента - " << FullName << endl;
 	}
 
-	void Print()
+	string GetFullname() //Получатель имени
 	{
-		cout << "ФИО: " << FullName << ", зарплата: " << Amount << ", премия: " << Bonus << endl;
+		return FullName;
+	}
+
+	double GetAmount() //Получатель размера зарплаты
+	{
+		return Amount;
+	}
+
+	int GetBonus() //Получатель премии
+	{
+		return Bonus;
+	}
+
+	void SetFullName(string newFullName) //Установщик имени
+	{
+		FullName = newFullName;
+	}
+
+	void SetAmount(double newAmount) //Установщик размера
+	{
+		Amount = newAmount;
+	}
+
+	void SetBonus(int newBonus) //Установщик премии  
+	{
+		Bonus = newBonus;
+	}
+
+	void Print() //Метод печати объекта класса
+	{
+		cout << "ФИО: " << FullName << ", зарплата: " << Amount << ", премия: " << Bonus << "%" << endl;
 	}
 
 private:
-	//Дефолтные значения
-	string FullName = "Placeholder";
-	double Amount = 1;
-	int Bonus = 1;
+	//Поля класса
+	string FullName; //ФИО
+	double Amount; //Зарплата
+	int Bonus; //Премия
 };
